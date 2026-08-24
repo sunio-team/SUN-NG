@@ -9,24 +9,33 @@ class AppTheme {
   final String fontFamily;
 
   ThemeData lightTheme(ColorScheme? lightColorScheme) {
-    final ColorScheme scheme = lightColorScheme ?? ColorScheme.fromSeed(seedColor: const Color(0xFF293CA0));
+    final ColorScheme scheme = lightColorScheme ??
+        ColorScheme.fromSeed(seedColor: const Color(0xFFFFD700));
     return ThemeData(
       useMaterial3: true,
       colorScheme: scheme,
       fontFamily: fontFamily,
-      extensions: const <ThemeExtension<dynamic>>{ConnectionButtonTheme.light},
+      scaffoldBackgroundColor: Colors.black,
+      extensions: const <ThemeExtension<dynamic>>{
+        ConnectionButtonTheme.light
+      },
     );
   }
 
   ThemeData darkTheme(ColorScheme? darkColorScheme) {
-    final ColorScheme scheme =
-        darkColorScheme ?? ColorScheme.fromSeed(seedColor: const Color(0xFF293CA0), brightness: Brightness.dark);
+    final ColorScheme scheme = darkColorScheme ??
+        ColorScheme.fromSeed(
+          seedColor: const Color(0xFFFFD700),
+          brightness: Brightness.dark,
+        );
     return ThemeData(
       useMaterial3: true,
       colorScheme: scheme,
-      scaffoldBackgroundColor: mode.trueBlack ? Colors.black : scheme.background,
+      scaffoldBackgroundColor: Colors.black,
       fontFamily: fontFamily,
-      extensions: const <ThemeExtension<dynamic>>{ConnectionButtonTheme.light},
+      extensions: const <ThemeExtension<dynamic>>{
+        ConnectionButtonTheme.light
+      },
     );
   }
 
@@ -37,11 +46,11 @@ class AppTheme {
       AppThemeMode.dark => true,
       AppThemeMode.black => true,
     };
-    final def = CupertinoThemeData(brightness: isDark ? Brightness.dark : Brightness.light);
-    // final def = CupertinoThemeData(brightness: Brightness.dark);
-
-    // return def;
-    final defaultMaterialTheme = isDark ? darkTheme(darkColorScheme) : lightTheme(lightColorScheme);
+    final def = CupertinoThemeData(
+      brightness: isDark ? Brightness.dark : Brightness.light,
+    );
+    final defaultMaterialTheme =
+        isDark ? darkTheme(darkColorScheme) : lightTheme(lightColorScheme);
     return MaterialBasedCupertinoThemeData(
       materialTheme: defaultMaterialTheme.copyWith(
         cupertinoOverrideTheme: def.copyWith(
@@ -55,8 +64,8 @@ class AppTheme {
             dateTimePickerTextStyle: def.textTheme.dateTimePickerTextStyle.copyWith(fontFamily: fontFamily),
             tabLabelTextStyle: def.textTheme.tabLabelTextStyle.copyWith(fontFamily: fontFamily),
           ).copyWith(),
-          barBackgroundColor: def.barBackgroundColor,
-          scaffoldBackgroundColor: def.scaffoldBackgroundColor,
+          barBackgroundColor: Colors.black,
+          scaffoldBackgroundColor: Colors.black,
         ),
       ),
     );
